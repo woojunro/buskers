@@ -1,48 +1,41 @@
 package kr.ac.yonsei.yctech.buskers.broadcast.domain;
 
 import jakarta.persistence.*;
+import kr.ac.yonsei.yctech.buskers.user.domain.User;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 
 @Entity
-@AllArgsConstructor
 @Getter
-@Table(name="chats_table")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EntityListeners(AuditingEntityListener.class)
 public class Chat {
+
     @Id
-    @GeneratedValue
-    @Column(name = "id")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @ManyToOne
-    @JoinColumn(name="broadcast_id")
+    @JoinColumn(name="broadcastId")
     private Broadcast broadcast;
 
     @ManyToOne
-    @JoinColumn(name="channel_id")
-    private Channel channel;
+    @JoinColumn(name="userId")
+    private User user;
 
-    @CreationTimestamp
-    private LocalDateTime created_at;
+    @CreatedDate
+    private LocalDateTime createdAt;
 
-    @Column(name = "content")
+    @Column(nullable = false)
     private String content;
-
-    public Chat(){
-        super();
-    }
-    public Chat(Broadcast broadcast, Channel channel, String content){
-        this.broadcast = broadcast;
-        this.channel = channel;
-        this.content = content;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }

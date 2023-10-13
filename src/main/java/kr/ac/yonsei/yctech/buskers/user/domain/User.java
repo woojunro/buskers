@@ -1,52 +1,54 @@
 package kr.ac.yonsei.yctech.buskers.user.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
+import kr.ac.yonsei.yctech.buskers.broadcast.domain.Broadcast;
+import kr.ac.yonsei.yctech.buskers.broadcast.domain.Chat;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 
 @Entity
-@Table(name="user_table")
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "member")
 public class User {
+
     @Id
-    @GeneratedValue
-    @Column(name = "id")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "channel_id", referencedColumnName = "id")
-    private Channel channel;
-
-    @Column(name="email")
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name="password")
+    @Column(nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    @CreationTimestamp
-    private LocalDateTime created_at;
+    @Column(nullable = false, unique = true)
+    private String name;
 
-    public User(){
-        super();
-    }
+    private String image;
 
-    public User(Channel channel,String email, String password) {
-        this.channel = channel;
-        this.email = email;
-        this.password = password;
-    }
+    @CreatedDate
+    private LocalDateTime createdAt;
 
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
 
-    public String getEmail() {
-        return email;
-    }
+    @OneToMany
+    private List<Broadcast> broadcasts = new ArrayList<>();
 
-    public Long getId() {
-        return id;
-    }
+    @OneToMany
+    private List<Chat> chats = new ArrayList<>();
 }

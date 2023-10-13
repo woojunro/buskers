@@ -1,55 +1,50 @@
 package kr.ac.yonsei.yctech.buskers.broadcast.domain;
 
 import jakarta.persistence.*;
+import kr.ac.yonsei.yctech.buskers.user.domain.User;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 
 @Entity
+@Getter
 @AllArgsConstructor
-@Table(name="broadcasts_table")
+@NoArgsConstructor
+@Builder
+@EntityListeners(AuditingEntityListener.class)
 public class Broadcast {
 
     @Id
-    @GeneratedValue
-    @Column(name = "id")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @ManyToOne
-    @JoinColumn(name="channel_id")
-    private Channel channel;
+    @JoinColumn(name="userId")
+    private User user;
 
-    @Column(name="title")
+    @Column(nullable = false)
     private String title;
-    @Column(name="description")
+
     private String description;
-    @CreationTimestamp
-    private LocalDateTime startedAt;
-    @UpdateTimestamp
+
+    @CreatedDate
+    private LocalDateTime createdAt;
+
     private LocalDateTime endedAt;
-    @Column(name="view_count")
-    private int view_count;
-    @Column(name="clap_count")
-    private int clap_count;
-    @Column(name="stream_url")
-    private String stream_url;
 
-    public Broadcast(){
-        super();
-    }
-    public Broadcast(Channel channel, String title, String description, String stream_url){
-        this.channel = channel;
-        this.title = title;
-        this.description = description;
-        this.stream_url = stream_url;
-    }
+    private Integer viewCount = 0;
 
-    public Long getId() {
-        return id;
-    }
+    private Integer clapCount = 0;
+
+    @OneToMany
+    private List<Chat> chats = new ArrayList<>();
 }
