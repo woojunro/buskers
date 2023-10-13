@@ -1,4 +1,4 @@
-package kr.ac.yonsei.yctech.buskers.broadcast.cotroller;
+package kr.ac.yonsei.yctech.buskers.broadcast.controller;
 
 import kr.ac.yonsei.yctech.buskers.broadcast.dto.ChatDto;
 import kr.ac.yonsei.yctech.buskers.broadcast.dto.BroadcastDto;
