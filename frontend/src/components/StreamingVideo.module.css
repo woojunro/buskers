@@ -1,0 +1,15 @@
+.frameChild {
+  align-self: stretch;
+  position: relative;
+  max-height: 100%;
+  width: 1280px;
+  object-fit: cover;
+}
+.vectorWrapper {
+  height: 760px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+}

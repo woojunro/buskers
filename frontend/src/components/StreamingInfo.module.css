@@ -1,0 +1,66 @@
+.span {
+  font-family: var(--font-koulen);
+}
+.leeMuJinContainer {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+}
+.frameChild {
+  position: relative;
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+}
+.frame {
+  width: 1253px;
+  height: 67px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.frameItem {
+  position: relative;
+  width: 44.4px;
+  height: 38.5px;
+  object-fit: cover;
+}
+.frame1,
+.userName {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+.userName {
+  position: relative;
+  width: 187.6px;
+  height: 33.6px;
+}
+.frame1 {
+  align-self: stretch;
+  height: 38.5px;
+  overflow: hidden;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: var(--gap-xs);
+  font-size: var(--font-size-5xl);
+}
+.streamingInfo {
+  background-color: var(--color-gray-100);
+  width: 1280px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: var(--padding-12xs) 0;
+  box-sizing: border-box;
+  gap: var(--gap-mini);
+  text-align: left;
+  font-size: var(--font-size-29xl);
+  color: var(--color-black);
+  font-family: var(--font-nanumgothic);
+}

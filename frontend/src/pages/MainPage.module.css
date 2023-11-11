@@ -1,0 +1,58 @@
+.frameChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 71px;
+  height: 248px;
+  object-fit: cover;
+}
+.frameInner {
+  position: relative;
+  width: 71px;
+  height: 248px;
+}
+.frameDiv {
+  width: 1281px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0.5px 0 0;
+  box-sizing: border-box;
+}
+.frame,
+.frame1,
+.mainPage {
+  display: flex;
+  align-items: center;
+}
+.frame1 {
+  width: 1920px;
+  overflow: hidden;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.frame,
+.mainPage {
+  flex-direction: column;
+  justify-content: center;
+}
+.frame {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  flex-shrink: 0;
+  gap: var(--gap-3xs);
+}
+.mainPage {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+}
+@media screen and (max-width: 1200px) {
+  .frame {
+    width: auto;
+    align-self: unset;
+    height: auto;
+  }
+}

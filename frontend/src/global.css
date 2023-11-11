@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Koulen:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=NanumGothic:wght@400;800&display=swap");
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* fonts */
+  --font-koulen: Koulen;
+  --font-nanumgothic: NanumGothic;
+
+  /* font sizes */
+  --font-size-lg: 18px;
+  --font-size-5xl: 24px;
+  --font-size-29xl: 48px;
+  --font-size-71xl: 90px;
+  --font-size-11xl: 30px;
+  --font-size-6xl: 25px;
+  --font-size-mini: 15px;
+
+  /* Colors */
+  --color-white: #fff;
+  --color-skyblue: rgba(162, 212, 242, 0.2);
+  --color-black: #000;
+  --color-gray-100: rgba(255, 255, 255, 0.5);
+  --color-gray-200: rgba(0, 0, 0, 0.42);
+  --color-gainsboro: #d9d9d9;
+
+  /* Gaps */
+  --gap-3xs: 10px;
+  --gap-mini: 15px;
+  --gap-xs: 12px;
+  --gap-69xl: 88px;
+  --gap-76xl: 95px;
+  --gap-37xl: 56px;
+  --gap-36xl: 55px;
+
+  /* Paddings */
+  --padding-381xl: 400px;
+  --padding-xl: 20px;
+  --padding-12xs: 1px;
+  --padding-7xs: 6px;
+  --padding-smi: 13px;
+  --padding-82xl: 101px;
+
+  /* Border radiuses */
+  --br-3xs: 10px;
+}
