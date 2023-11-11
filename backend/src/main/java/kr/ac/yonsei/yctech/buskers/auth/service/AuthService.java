@@ -60,4 +60,35 @@ public class AuthService {
         return authToken;
     }
 
+    @Transactional
+    public AuthToken refreshAuthToken(String refreshToken) {
+        boolean isRefreshTokenValid = jwtTokenProvider.validateToken(refreshToken);
+        if (!isRefreshTokenValid) {
+            throw new CustomException(ErrorCode.INVALID_REFRESH_TOKEN);
+        }
+
+        Optional<RefreshToken> refresh = refreshTokenRepository.findByToken(refreshToken);
+        if (refresh.isEmpty()) {
+            throw new CustomException(ErrorCode.REFRESH_TOKEN_NOT_FOUND);
+        }
+
+        Member user = refresh.get().getUser();
+
+        UsernamePasswordAuthenticationToken token =
+                new UsernamePasswordAuthenticationToken(user.getUsername(), "oauth");
+        Authentication authentication =
+                authenticationManagerBuilder.getObject().authenticate(token);
+        AuthToken authToken = jwtTokenProvider.generateToken(authentication);
+
+        refreshTokenRepository.delete(refresh.get());
+
+        RefreshToken newRefresh = RefreshToken.builder()
+                .token(authToken.refreshToken())
+                .user(user)
+                .build();
+        refreshTokenRepository.save(newRefresh);
+
+        return authToken;
+    }
+
 }
