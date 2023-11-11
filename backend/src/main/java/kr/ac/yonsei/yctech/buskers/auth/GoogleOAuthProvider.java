@@ -36,12 +36,9 @@ public class GoogleOAuthProvider {
                 GoogleAccessTokenResponse.class
         );
 
-        if (response.getStatusCode() == HttpStatus.OK) {
-            GoogleAccessTokenResponse body = response.getBody();
-            if (body == null) return "";
-            return body.getAccess_token();
-        }
-        return "";
+        GoogleAccessTokenResponse body = response.getBody();
+        if (body == null) return "";
+        return body.getAccess_token();
     }
 
     public String getGoogleEmail(String code, String redirectUri) {
@@ -54,12 +51,9 @@ public class GoogleOAuthProvider {
                 GoogleUserInfoResponse.class
         );
 
-        if (response.getStatusCode() == HttpStatus.OK) {
-            GoogleUserInfoResponse body = response.getBody();
-            if (body == null) return "";
-            return body.getEmail();
-        }
-        return "";
+        GoogleUserInfoResponse body = response.getBody();
+        if (body == null) return "";
+        return body.getEmail();
     }
 
 }
