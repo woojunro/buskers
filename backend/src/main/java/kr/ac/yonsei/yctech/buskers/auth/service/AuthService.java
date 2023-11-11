@@ -5,6 +5,8 @@ import kr.ac.yonsei.yctech.buskers.auth.JwtTokenProvider;
 import kr.ac.yonsei.yctech.buskers.auth.domain.RefreshToken;
 import kr.ac.yonsei.yctech.buskers.auth.dto.AuthToken;
 import kr.ac.yonsei.yctech.buskers.auth.repository.RefreshTokenRepository;
+import kr.ac.yonsei.yctech.buskers.common.exception.CustomException;
+import kr.ac.yonsei.yctech.buskers.common.exception.ErrorCode;
 import kr.ac.yonsei.yctech.buskers.user.domain.Member;
 import kr.ac.yonsei.yctech.buskers.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +30,18 @@ public class AuthService {
 
     @Transactional
     public AuthToken signInWithGoogle(String code, String redirectUri) {
-        String email = googleOAuthProvider.getGoogleEmail(code, redirectUri);
+        String email;
+
+        try {
+            email = googleOAuthProvider.getGoogleEmail(code, redirectUri);
+        } catch (Exception e) {
+            throw new CustomException(ErrorCode.INVALID_OAUTH_TOKEN);
+        }
+
+        if (email.isEmpty()) {
+            throw new CustomException(ErrorCode.INVALID_OAUTH_TOKEN);
+        }
+
         Optional<Member> userByEmail = userService.getUserByEmail(email);
         Member user = userByEmail.orElse(userService.createUser(email, "oauth"));
 
