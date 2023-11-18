@@ -7,11 +7,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Entity
 @Builder
@@ -21,22 +20,25 @@ import java.util.stream.Collectors;
 public class Member extends BaseEntity implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-
-    @Column(unique = true)
-    private String name;
-
-    @Column(nullable = false)
-    private String password;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
+    private String password;
+
+    private String name;
+
+    private String image;
+
+    // Used for soft-delete
+    private LocalDateTime deletedAt;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -67,6 +69,10 @@ public class Member extends BaseEntity implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return deletedAt != null;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
