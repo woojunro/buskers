@@ -71,4 +71,8 @@ public class Member extends BaseEntity implements UserDetails {
     public boolean isEnabled() {
         return deletedAt != null;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

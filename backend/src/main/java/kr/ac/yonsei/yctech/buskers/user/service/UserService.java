@@ -50,4 +50,21 @@ public class UserService {
         );
     }
 
+    public UserInfo updateUser(Long id, String name) {
+        Optional<Member> existingUser = userRepository.findById(id);
+        if (existingUser.isEmpty()) {
+            throw new CustomException(ErrorCode.USER_NOT_FOUND);
+        }
+
+        Member user = existingUser.get();
+        user.setName(name);
+        user = userRepository.save(user);
+        return new UserInfo(
+                user.getId(),
+                user.getEmail(),
+                user.getName(),
+                user.getImage()
+        );
+    }
+
 }

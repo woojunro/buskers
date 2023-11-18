@@ -1,10 +1,12 @@
 package kr.ac.yonsei.yctech.buskers.common.exception;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Getter
+@RequiredArgsConstructor
 public class ErrorResponse {
 
     private final LocalDateTime timestamp = LocalDateTime.now();
