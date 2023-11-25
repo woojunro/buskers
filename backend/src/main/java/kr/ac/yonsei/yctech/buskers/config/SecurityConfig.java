@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(requests ->
                         requests
                                 .requestMatchers(
-                                        new AntPathRequestMatcher("/api/v1/auth/login/*")
+                                        new AntPathRequestMatcher("/**")
                                 ).permitAll()
                                 .requestMatchers(PathRequest.toH2Console()).permitAll()
                                 .anyRequest().authenticated()

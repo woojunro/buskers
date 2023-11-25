@@ -1,14 +1,24 @@
 import styles from "./NavBar.module.css";
+import { useNavigate } from "react-router-dom";
+
 
 const NavBar = () => {
+  
+  const navigate = useNavigate();
+  const goToProfile = () => {
+    navigate("/profile");
+  }
+  const goToMainPage = () => {
+    navigate("/");
+  }
   return (
     <nav className={styles.navBar} id="nav">
       <div className={styles.frameParent}>
-        <div className={styles.buskersWrapper}>
+        <goToMainPage className={styles.buskersWrapper} onClick={goToMainPage}>
           <h1 className={styles.buskers} id="Buskers">
             Buskers
           </h1>
-        </div>
+        </goToMainPage>
         <div className={styles.frame}>
           <img
             className={styles.broadcastIcon}
@@ -16,11 +26,12 @@ const NavBar = () => {
             alt=""
             src="/streaming@2x.png"
           />
+          <goToProfile onClick = {goToProfile} className={styles.userProfileIcon}>
           <img
-            className={styles.userProfileIcon}
+            className={styles.profile_img}
             alt=""
             src="/user-profile@2x.png"
-          />
+          /></goToProfile>
         </div>
       </div>
     </nav>

@@ -1,16 +1,20 @@
 import styles from "./LoginFormContainer.module.css";
+import {Link, Route, useNavigate} from 'react-router-dom';
+import {GoogleOAuthProvider, useGoogleLogin} from "@react-oauth/google";
+import LoginButton from './LoginButton'
 
 const LoginFormContainer = () => {
+
+
   return (
     <div className={styles.frame}>
       <div className={styles.login}>Login</div>
-      <div className={styles.frame1}>
-        <div className={styles.frame2}>
-          <div className={styles.googleLogin}>Google Login</div>
-        </div>
-      </div>
+        <GoogleOAuthProvider clientId={"584824258955-5l6foi1anol0ffum8si62bt5stgu5te5.apps.googleusercontent.com"}>
+            <LoginButton></LoginButton>
+        </GoogleOAuthProvider>
+
       <div className={styles.frame3}>
-        <div className={styles.signInHere}>Sign in here</div>
+          <Link to="/sign-up" className={styles.signInHere}>Sign up here</Link>
       </div>
     </div>
   );

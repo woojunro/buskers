@@ -35,6 +35,7 @@ public class AuthService {
         try {
             email = googleOAuthProvider.getGoogleEmail(code, redirectUri);
         } catch (Exception e) {
+            System.out.println(e);
             throw new CustomException(ErrorCode.INVALID_OAUTH_TOKEN);
         }
 
