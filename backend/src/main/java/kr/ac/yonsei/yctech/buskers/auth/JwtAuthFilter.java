@@ -47,9 +47,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String path = request.getServletPath();
 
+
         String[] excludedPaths = {
                 "/api/v1/auth/login",
-                "/h2-console"
+                "/h2-console", "/*"
         };
 
         for (String excludedPath: excludedPaths) {

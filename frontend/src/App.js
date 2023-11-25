@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import {useEffect, useState} from "react";
 import {
   Routes,
   Route,
@@ -7,13 +7,21 @@ import {
 } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import Profile from "./pages/Profile";
-import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 import LoginPage from "./pages/LoginPage";
+import axios from 'axios';
 
 function App() {
   const action = useNavigationType();
   const location = useLocation();
   const pathname = location.pathname;
+  const [hello, setHello] = useState('')
+
+  useEffect(() => {
+    axios.get('/main')
+        .then(response => setHello(response.data))
+        .catch(error => console.log(error))
+  }, []);
 
   useEffect(() => {
     if (action !== "POP") {
@@ -34,7 +42,7 @@ function App() {
         title = "";
         metaDescription = "";
         break;
-      case "/sign-in":
+      case "/sign-up":
         title = "";
         metaDescription = "";
         break;
@@ -59,12 +67,12 @@ function App() {
   }, [pathname]);
 
   return (
-    <Routes>
-      <Route path="/" element={<MainPage />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/sign-in" element={<SignIn />} />
-      <Route path="/login-page" element={<LoginPage />} />
-    </Routes>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/login-page" element={<LoginPage />} />
+      </Routes>
   );
 }
 export default App;

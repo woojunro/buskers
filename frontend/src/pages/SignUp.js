@@ -1,7 +1,7 @@
 import ProfileContainer from "../components/ProfileContainer";
-import styles from "./SignIn.module.css";
+import styles from "./SignUp.module.css";
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <div className={styles.signIn}>
       <nav className={styles.navBar} id="nav">
@@ -36,4 +36,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
