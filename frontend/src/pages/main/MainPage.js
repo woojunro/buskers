@@ -1,6 +1,6 @@
-import NavBar from "../components/NavBar";
-import Streaming from "../components/Streaming";
-import ChatFormContainer from "../components/ChatFormContainer";
+import NavBar from "../../components/navbar/NavBar";
+import Streaming from "../../components/streaming/Streaming";
+import ChatFormContainer from "../../components/chats/ChatFormContainer";
 import styles from "./MainPage.module.css";
 
 const MainPage = () => {

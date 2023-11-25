@@ -5,10 +5,9 @@ import {
   useNavigationType,
   useLocation,
 } from "react-router-dom";
-import MainPage from "./pages/MainPage";
-import Profile from "./pages/Profile";
-import SignUp from "./pages/SignUp";
-import LoginPage from "./pages/LoginPage";
+import MainPage from "./pages/main/MainPage";
+import Profile from "./pages/profile/Profile";
+import LoginPage from "./pages/login/LoginPage";
 import axios from 'axios';
 
 function App() {
@@ -70,7 +69,6 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login-page" element={<LoginPage />} />
       </Routes>
   );
