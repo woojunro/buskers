@@ -8,19 +8,12 @@ import {
 import MainPage from "./pages/main/MainPage";
 import Profile from "./pages/profile/Profile";
 import LoginPage from "./pages/login/LoginPage";
-import axios from 'axios';
 
 function App() {
   const action = useNavigationType();
   const location = useLocation();
   const pathname = location.pathname;
-  const [hello, setHello] = useState('')
 
-  useEffect(() => {
-    axios.get('/main')
-        .then(response => setHello(response.data))
-        .catch(error => console.log(error))
-  }, []);
 
   useEffect(() => {
     if (action !== "POP") {

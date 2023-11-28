@@ -4,7 +4,7 @@ import styles from "./LoginFormContainer.module.css";
 export default function LoginButton(){
     const login = useGoogleLogin({
         ux_mode: "redirect",
-        redirect_uri: "http://localhost:3000/login/callback",
+        redirect_uri: "http://localhost:8080/login/callback",
         onSuccess: codeResponse => console.log(codeResponse),
         flow: 'auth-code',
     });

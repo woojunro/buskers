@@ -2,7 +2,6 @@ package kr.ac.yonsei.yctech.buskers.chat.repository;
 
 import kr.ac.yonsei.yctech.buskers.chat.dto.ChatDTO;
 import kr.ac.yonsei.yctech.buskers.chat.dto.ChatRoom;
-import kr.ac.yonsei.yctech.buskers.chat.util.RoomUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.HashOperations;
@@ -40,9 +39,8 @@ public class ChatRepository {
     }
 
     // roomName 로 채팅방 만들기
-    public ChatRoom createChatRoom(String roomName){
+    public ChatRoom createChatRoom(String roomId, String roomName){
         //1. roomId 생성
-        String roomId = RoomUtil.randomRoomId();
         //2. Redis에 채팅방 정보를 저장하는 코드 추가
         ChatRoom chatRoom = ChatRoom.builder()
                 .roomName(roomName)

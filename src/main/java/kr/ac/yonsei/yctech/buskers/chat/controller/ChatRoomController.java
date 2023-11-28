@@ -18,13 +18,13 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/chat")
+@RequestMapping("/api/v1/chat")
 public class ChatRoomController {
 
     private final ChatRepository chatRepository;
 
     // 해당 채팅방 채팅내역 표시
-    @PostMapping("/chatlist")
+    @PostMapping("/chatList")
     public ModelAndView goChatRoom(@RequestBody RoomRequest roomRequest, ModelAndView mav){
         //1. 조회
         List<ChatDTO> list = chatRepository.findRoomChatting(roomRequest.getRoomId());
@@ -36,21 +36,22 @@ public class ChatRoomController {
     }
 
     // 채팅방 생성
-    @PostMapping("/createroom")
+    @PostMapping("/createRoom")
     public ModelAndView createRoom(@RequestBody RoomRequest roomRequest, ModelAndView mav) {
 
         //2. 채팅방 생성
-        ChatRoom room = chatRepository.createChatRoom(roomRequest.getRoomName());
+        ChatRoom room = chatRepository.createChatRoom(roomRequest.getRoomId(),roomRequest.getRoomName());
         log.info("CREATE Chat Room {}", room);
 
         //return
         mav.addObject("roomId", room.getRoomId());
+        mav.addObject("roomName", room.getRoomName());
         mav.setViewName("jsonView");
         return mav;
     }
 
     // 채팅에 참여한 유저 리스트 반환
-    @PostMapping("/userlist")
+    @PostMapping("/userList")
     public ModelAndView userList(@RequestBody RoomRequest roomRequest, ModelAndView mav) {
         //1. 조회
         ArrayList<String> userList = chatRepository.getUserList(roomRequest.getRoomId());

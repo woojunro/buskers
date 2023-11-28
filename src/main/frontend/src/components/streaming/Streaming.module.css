@@ -1,6 +1,6 @@
 .frameParent {
-  width: 1305px;
-  height: 923px;
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -8,7 +8,6 @@
   justify-content: flex-start;
   gap: var(--gap-3xs);
   text-align: left;
-  font-size: var(--font-size-29xl);
   color: var(--color-black);
   font-family: var(--font-nanumgothic);
 }
