@@ -37,11 +37,9 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(requests ->
                         requests
-                                .requestMatchers(
-                                        new AntPathRequestMatcher("/**")
-                                ).permitAll()
-                                .requestMatchers(PathRequest.toH2Console()).permitAll()
-                                .anyRequest().authenticated()
+                                .requestMatchers(new AntPathRequestMatcher("/api/v1/auth/**")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/api/**")).authenticated()
+                                .anyRequest().permitAll()
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
