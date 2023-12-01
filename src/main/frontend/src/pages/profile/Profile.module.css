@@ -1,0 +1,10 @@
+.profile {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

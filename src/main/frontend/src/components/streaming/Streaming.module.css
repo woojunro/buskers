@@ -1,0 +1,13 @@
+.frameParent {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-3xs);
+  text-align: left;
+  color: var(--color-black);
+  font-family: var(--font-nanumgothic);
+}

@@ -1,0 +1,72 @@
+.login {
+  position: relative;
+  font-family: var(--font-koulen);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 594px;
+  height: 75px;
+  flex-shrink: 0;
+}
+.googleLogin {
+  position: relative;
+  font-weight: 800;
+  font-size: 1.5vw;
+}
+.frame2 {
+  border-radius: var(--br-3xs);
+  background-color: var(--color-skyblue);
+  border: 1px solid var(--color-black);
+  box-sizing: border-box;
+  width: 68%;
+  height: auto;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+.frame1 {
+  width: 100%;
+  overflow: hidden;
+  align-items: center;
+  text-align: left;
+  margin-top: 10%;
+  font-size: 1.5vw;
+}
+.frame,
+.frame1,
+.frame3,
+.signInHere {
+  display: flex;
+  justify-content: center;
+}
+.signInHere {
+  position: relative;
+  align-items: center;
+  width: 211px;
+  height: 32px;
+  flex-shrink: 0;
+}
+.frame3 {
+  width: 220px;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: var(--font-size-mini);
+}
+.frame {
+  margin-top: 30%;
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+  font-size:  2vw;
+  color: var(--color-black);
+  font-family: var(--font-koulen);
+}

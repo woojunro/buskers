@@ -1,0 +1,23 @@
+spring:
+  profiles:
+    include: secret
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true

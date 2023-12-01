@@ -1,0 +1,64 @@
+.buskers,
+.buskersWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buskers {
+  margin: 0;
+  flex: 1;
+  position: relative;
+  font-size: 5vw;
+  font-weight: 400;
+  font-family: inherit;
+  height: 3vh;
+}
+.buskersWrapper {
+  width: 20%;
+  flex-direction: row;
+}
+.broadcastIcon{
+  width: 5%;
+  height: auto;
+}
+.userProfileIcon {
+  width: 5%;
+  height: auto;
+  margin-right: 5%;
+
+}
+.frame,
+.frameParent {
+  display: flex;
+  flex-direction: row;
+}
+.frame {
+  width: 80%;
+  overflow: hidden;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5%;
+}
+.frameParent {
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.navBar {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  background-color: var(--color-skyblue);
+  height: auto;
+  text-align: center;
+  color: var(--color-black);
+  font-family: var(--font-koulen);
+}
+.profile_img{
+  width:100%;
+  height: auto;
+}
+.broadcast_img{
+  width:100%;
+  height: auto;
+}
