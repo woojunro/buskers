@@ -30,7 +30,7 @@ const NavBar = () => {
             alt=""
             src="/streaming@2x.png"
           />
-          <goToProfile onClick = {goToProfile} className={styles.userProfileIcon}>
+          <goToProfile onClick = {goToLoginPage} className={styles.userProfileIcon}>
           <img
             className={styles.profile_img}
             alt=""
