@@ -7,6 +7,7 @@ const Chat1 = ({
                    chat1AlignSelf,
                    rectangleDivWidth,
                    rectangleDivAlignSelf,
+                    chatDto, idx
                }) => {
     const chat1Style = useMemo(() => {
         return {
@@ -22,16 +23,16 @@ const Chat1 = ({
     }, [rectangleDivWidth, rectangleDivAlignSelf]);
 
     return (
-        <div className={styles.chat1} style={chat1Style}>
+        <div key={idx} className={styles.chat1} style={chat1Style}>
             <div className={styles.chat1Child} style={rectangleDivStyle} />
-            <div className={styles.chats}>chats</div>
+            <div className={styles.chats}>{chatDto.message}</div>
             <img
                 className={styles.chat1Item}
                 id="user-profile"
                 alt=""
                 src={dimensionCode}
             />
-            <div className={styles.user1}>{userCode}</div>
+            <div className={styles.user1}>{chatDto.sender}</div>
         </div>
     );
 };
