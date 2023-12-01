@@ -42,21 +42,4 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 .map(Cookie::getValue)
                 .findFirst();
     }
-
-    @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        String path = request.getServletPath();
-
-
-        String[] excludedPaths = {
-                "/api/v1/auth/login",
-                "/h2-console", "/*"
-        };
-
-        for (String excludedPath: excludedPaths) {
-            if (path.startsWith(excludedPath)) return true;
-        }
-
-        return false;
-    }
 }
