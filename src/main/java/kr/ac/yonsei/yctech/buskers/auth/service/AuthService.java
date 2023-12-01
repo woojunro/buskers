@@ -35,7 +35,6 @@ public class AuthService {
         try {
             email = googleOAuthProvider.getGoogleEmail(code, redirectUri);
         } catch (Exception e) {
-            System.out.println(e);
             throw new CustomException(ErrorCode.INVALID_OAUTH_TOKEN);
         }
 
@@ -44,7 +43,7 @@ public class AuthService {
         }
 
         Optional<Member> userByEmail = userService.getUserByEmail(email);
-        Member user = userByEmail.orElse(userService.createUser(email, "oauth"));
+        Member user = userByEmail.orElseGet(() -> userService.createUser(email, "oauth"));
 
         UsernamePasswordAuthenticationToken token =
                 new UsernamePasswordAuthenticationToken(email, "oauth");
