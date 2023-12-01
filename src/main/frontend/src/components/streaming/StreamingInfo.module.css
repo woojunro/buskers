@@ -1,5 +1,5 @@
 .span {
-  font-family: var(--font-koulen);
+  font-family: var(--font-nanumgothic);
 }
 .leeMuJinContainer {
   margin: 0;
@@ -7,15 +7,21 @@
   font-size: inherit;
   font-family: inherit;
 }
-.frameChild {
+.frameClap {
   position: relative;
-  width: 65px;
-  height: 65px;
-  object-fit: cover;
+  width: 5%;
+  height: auto;
+  align-self: flex-end;
+  margin-right: 1%;
+}
+.frameClapChild{
+  width: 100%;
+  height: auto;
+
 }
 .frame {
-  width: 1253px;
-  height: 67px;
+  width: 100%;
+  height: auto;
   overflow: hidden;
   flex-shrink: 0;
   display: flex;
@@ -25,8 +31,8 @@
 }
 .frameItem {
   position: relative;
-  width: 44.4px;
-  height: 38.5px;
+  width: 4%;
+  height: auto;
   object-fit: cover;
 }
 .frame1,
@@ -37,21 +43,22 @@
 }
 .userName {
   position: relative;
-  width: 187.6px;
-  height: 33.6px;
+  width: 30%;
+  height: auto;
 }
 .frame1 {
   align-self: stretch;
-  height: 38.5px;
+  height: auto;
   overflow: hidden;
   flex-direction: row;
   justify-content: flex-start;
   gap: var(--gap-xs);
-  font-size: var(--font-size-5xl);
+  font-size: 1.5vw;
 }
 .streamingInfo {
   background-color: var(--color-gray-100);
-  width: 1280px;
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -60,7 +67,7 @@
   box-sizing: border-box;
   gap: var(--gap-mini);
   text-align: left;
-  font-size: var(--font-size-29xl);
+  font-size: 2.5vw;
   color: var(--color-black);
   font-family: var(--font-nanumgothic);
 }

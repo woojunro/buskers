@@ -8,9 +8,13 @@ const NavBar = () => {
   const goToProfile = () => {
     navigate("/profile");
   }
+  const goToLoginPage = () => {
+    navigate("/login-page");
+  }
   const goToMainPage = () => {
     navigate("/");
   }
+
   return (
     <nav className={styles.navBar} id="nav">
       <div className={styles.frameParent}>

@@ -9,7 +9,7 @@ const MainPage = () => {
       <main className={styles.frame} id="main">
         <NavBar />
         <main className={styles.frame1} id="main">
-          <div className={styles.frameInner}>
+          <div className={styles.frameInnerLeft}>
             <img
               className={styles.frameChild}
               alt=""
@@ -20,7 +20,7 @@ const MainPage = () => {
             <Streaming />
           </div>
           <ChatFormContainer />
-          <div className={styles.frameInner}>
+          <div className={styles.frameInnerRight}>
             <img
               className={styles.frameChild}
               id="next"

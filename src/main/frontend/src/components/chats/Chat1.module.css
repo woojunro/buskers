@@ -2,8 +2,8 @@
   position: relative;
   border-radius: var(--br-3xs);
   background-color: var(--color-skyblue);
-  width: 370px;
-  height: 70px;
+  width: 100%;
+  height: 10vh;
   z-index: 0;
 }
 .chat1Item,
@@ -12,45 +12,47 @@
   margin: 0 !important;
 }
 .chats {
-  top: 24.9px;
-  left: 52.5px;
+  top: 40%;
+  left: 20%;
   display: flex;
   align-items: center;
-  width: 281.2px;
-  height: 31.1px;
+  width: 60%;
+  height: auto;
   flex-shrink: 0;
   z-index: 1;
 }
 .chat1Item {
-  top: 19.4px;
-  left: 13.3px;
-  width: 29.6px;
-  height: 32.7px;
-  object-fit: cover;
+  top: 25%;
+  left: 5%;
+  width: 10%;
+  height: auto;
+  object-fit: fill;
   z-index: 2;
 }
-.chat1,
 .user1 {
-  display: flex;
-  align-items: center;
+  width: 25%;
 }
 .user1 {
   position: absolute;
   margin: 0 !important;
-  top: 8.6px;
-  left: 52.5px;
+  top: 2%;
+  left: 20%;
   color: var(--color-black);
-  width: 96.2px;
-  height: 12.4px;
+  width: 25%;
+  height: auto;
   flex-shrink: 0;
   z-index: 3;
 }
 .chat1 {
+  display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
   text-align: left;
-  font-size: var(--font-size-lg);
+  font-size: 1.5vw;
   color: var(--color-gray-200);
   font-family: var(--font-koulen);
+  height: 10vh;
+
 }
