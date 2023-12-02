@@ -1,3 +1,4 @@
+
 .frameChild {
   width:100%;
   height:auto;
@@ -49,4 +50,15 @@
   background-color: var(--color-white);
   width: 100%;
   flex-direction: row;
+}
+
+.noBusking{
+  font-size: 4vw;
+  width: 30%;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--font-koulen);
+  gap: 20px;
+  margin-top:20%;
+
 }

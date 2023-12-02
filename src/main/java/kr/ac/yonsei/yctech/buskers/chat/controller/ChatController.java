@@ -27,7 +27,7 @@ public class ChatController {
     // 처리가 완료되면 /sub/chat/room/roomId 로 메시지가 전송된다.
     @MessageMapping("/chat/enterUser")
     public void enterUser(@Payload ChatDTO chat, SimpMessageHeaderAccessor headerAccessor) {
-        log.info(chat.toString());
+        log.info(chat.toString(), "backend");
 
         // 채팅방에 유저 추가 및 UserUUID 반환
         String userUUID = repository.addUser(chat.getRoomId(), chat.getSender());
@@ -38,6 +38,7 @@ public class ChatController {
 
         chat.setMessage(chat.getSender() + " 님 입장!!");
 
+
         //메세지 저장 추가
         repository.saveMsg(chat);
         template.convertAndSend("/sub/chat/room/" + chat.getRoomId(), chat);
@@ -47,8 +48,10 @@ public class ChatController {
     @MessageMapping("/chat/sendMessage")
     public void sendMessage(@Payload ChatDTO chat) {
         log.info("CHAT {}", chat);
-        String msg = chat.getSender() + "님 : " + chat.getMessage();
+        String msg = chat.getMessage();
+        String sender = chat.getSender();
         chat.setMessage(msg);
+        chat.setSender(sender);
 
         //메세지 저장 추가
         repository.saveMsg(chat);
