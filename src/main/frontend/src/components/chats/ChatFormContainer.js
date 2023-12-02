@@ -3,8 +3,6 @@ import styles from "./ChatFormContainer.module.css";
 import * as StompJs from "@stomp/stompjs";
 import React, {useEffect, useState} from "react";
 
-
-
 const ChatFormContainer = ({chatList,broadcastList, callback, roomId, userId}) => {
 
     useEffect(() => {

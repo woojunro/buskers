@@ -7,6 +7,7 @@ import { useAtomValue } from "jotai";
 import { userIdAtom } from "../../atom";
 import { useNavigate } from "react-router-dom";
 
+
 const MainPage = () => {
 
     const userId = useAtomValue(userIdAtom);

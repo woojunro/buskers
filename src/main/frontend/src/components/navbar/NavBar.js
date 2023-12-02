@@ -4,7 +4,6 @@ import axios from "axios";
 import { userIdAtom } from "../../atom";
 import { useAtomValue } from "jotai";
 
-
 const NavBar = () => {
     const userId = useAtomValue(userIdAtom);
 
