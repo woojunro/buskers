@@ -8,15 +8,22 @@ import { userIdAtom } from "../../atom";
 import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
-    const [roomList, setRoomList] = useState([]);
-    const [chatList, setChatList] = useState([]);//채팅 기록
-    const roomId = "1234";//broadcast Id
-    const roomName = "streaming chat room";
+
     const userId = useAtomValue(userIdAtom);
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [broadcastList, setBroadcastList] = useState([]);
     const [broadcastIdx, setBroadcastIdx] = useState(-1);
+    const [chatList, setChatList] = useState([]);//채팅 기록
+    const token = JSON.stringify("token");//user token
+
+    useEffect(() => {
+        console.log("chatList", chatList);
+    }, [chatList]);
+    useEffect(() => {
+        console.log("broadcastList:", broadcastList);
+    }, [broadcastList]);
+
 
     const callback = function(chatDto){
         if(chatDto.body) {
@@ -38,6 +45,7 @@ const MainPage = () => {
             if (res.ok) {
                 const list = await res.json();
                 setBroadcastList(list);
+
                 if (list && list.length > 0) {
                     setBroadcastIdx(0);
                 }
@@ -46,45 +54,77 @@ const MainPage = () => {
         setIsLoading(false);
     }, []);
 
+
     const handleBeforeClick = () => {
         if (broadcastIdx > 0) setBroadcastIdx(broadcastIdx - 1);
+        console.log("click before");
     };
 
     const handleNextClick = () => {
         if (broadcastList && broadcastIdx < broadcastList.length - 1)
             setBroadcastIdx(broadcastIdx + 1);
+        console.log("click next");
     };
 
     if (isLoading) return <h1>Loading...</h1>;
+    if(broadcastList.length!==0&&broadcastIdx>=0){
+        return (
+            <div className={styles.mainPage}>
+                <main className={styles.frame} id="main">
+                    <NavBar
+                        broadcastList={broadcastList}
+                        setBroadcastList={setBroadcastList}
+                    />
+                        <main className={styles.frame1} id="main">
+                            <div className={styles.frameInnerLeft} onClick={handleBeforeClick}>
+                                <img
+                                    className={styles.frameChild}
+                                    alt=""
+                                    src="/rectangle-19@2x.png"
+                                />
+                            </div>
+                            <div className={styles.frameDiv}>
+                                <Streaming broadcast={broadcastList[broadcastIdx]} />
+                            </div>
+                            <ChatFormContainer
+                                chatList={chatList}
+                                broadcastList={broadcastList}
+                                callback={callback}
+                                roomId={broadcastList[broadcastIdx].streamId}
+                                userId = {userId}
+                            />
 
-    return (
-    <div className={styles.mainPage}>
-      <main className={styles.frame} id="main">
-        <NavBar />
-        <main className={styles.frame1} id="main">
-          <div className={styles.frameInnerLeft}>
-            <img
-              className={styles.frameChild}
-              alt=""
-              src="/rectangle-19@2x.png"
-            />
-          </div>
-          <div className={styles.frameDiv}>
-            <Streaming />
-          </div>
-          <ChatFormContainer />
-          <div className={styles.frameInnerRight}>
-            <img
-              className={styles.frameChild}
-              id="next"
-              alt=""
-              src="/rectangle-18@2x.png"
-            />
-          </div>
-        </main>
-      </main>
-    </div>
-  );
+                            <div className={styles.frameInnerRight} onClick={handleNextClick}>
+                                <img
+                                    className={styles.frameChild}
+                                    id="next"
+                                    alt=""
+                                    src="/rectangle-18@2x.png"
+                                />
+                            </div>
+                        </main>
+                </main>
+            </div>
+        );
+
+    }
+    else{
+        return(
+            <div className={styles.mainPage}>
+                <main className={styles.frame} id="main">
+                    <NavBar
+                        broadcastList={broadcastList}
+                        setBroadcastList={setBroadcastList}
+                    />
+                    <div className={styles.noBusking}>No busking</div>
+                </main>
+            </div>
+
+        )
+    }
+
+
+
 };
 
 export default MainPage;

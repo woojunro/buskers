@@ -1,7 +1,6 @@
 import styles from "./NavBar.module.css";
-import { useNavigate, useEffect } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import axios from "axios";
-import * as StompJs from "@stomp/stompjs";
 import { userIdAtom } from "../../atom";
 import { useAtomValue } from "jotai";
 
@@ -41,7 +40,7 @@ const NavBar = () => {
                 const streamId = stream.live_stream.id;
                 const sourceInfo = stream.live_stream.source_connection_information;
 
-                fetch(
+                await fetch(
                     `https://api.video.wowza.com/api/v1.11/live_streams/${streamId}/start`,
                     {
                         method: "PUT",
@@ -52,7 +51,7 @@ const NavBar = () => {
                     }
                 );
 
-                fetch("/api/v1/broadcasts", {
+                await fetch("/api/v1/broadcasts", {
                     method: "POST",
                     credentials: "include",
                     headers: {
@@ -79,28 +78,27 @@ const NavBar = () => {
                         navigate("/");
                     }
                 });
+                await axios.post("http://localhost:8080/api/v1/chat/createRoom",
+                    {
+                        roomId: streamId.toString(),
+                        roomName: title.toString(),
+                    },
+                    {"Content-type": "application/json"},)
+                    .then((res) => {
+                        console.log(res);
+                        //setStreamIdList((prev) => [...prev, res.data]);
+                    })
+                    .catch((res) => console.log(res));
+
+
             }
         });
     };
+    // const goToBroadcast = async () => {
+    //     await
+    // }
 
-    const goToBroadcast = async () => {
-        await axios.post("http://localhost:8080/api/v1/chat/createRoom",
-            {
-                roomId: "1234",
-                roomName: "user_12",
-            },
-            {"Content-type": "application/json"},)
-            .then((res) => {
-                console.log(res);
-                setRoomList((prev) => [...prev, res.data]);
 
-            })
-            .catch((res) => console.log(res));
-    }
-    //room List 서버에서 불러오기로 바꿔야됨
-    useEffect(() => {
-        console.log("RoomList:", roomList);
-    }, [roomList]);
 
     return (
     <nav className={styles.navBar} id="nav">
@@ -110,7 +108,7 @@ const NavBar = () => {
             Buskers
           </h1>
         </goToMainPage>
-        <div className={styles.frame} onClick={goToBroadcast}>
+        <div className={styles.frame} >
           <img
             className={styles.broadcastIcon}
             id="streaming"

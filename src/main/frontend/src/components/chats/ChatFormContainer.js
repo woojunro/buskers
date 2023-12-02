@@ -5,15 +5,14 @@ import React, {useEffect, useState} from "react";
 
 
 
-const ChatFormContainer = ({chatList,roomList, callback, roomId}) => {
+const ChatFormContainer = ({chatList,broadcastList, callback, roomId, userId}) => {
+
     useEffect(() => {
         console.log("chatList", chatList);
     }, [chatList]);
     let [client, changeClient] = useState(null);
     const [chat, setChat] = useState("");
-    const userId = "user_12"; //user Id
     const token = JSON.stringify("token");//user token
-
 
 
     const disConnect = () => {
@@ -39,25 +38,25 @@ const ChatFormContainer = ({chatList,roomList, callback, roomId}) => {
         console.log("chat:", chat);
         setChat("");
     };
-    //enter chat room
-    const sendName =  async () => {
-        await client.subscribe("/sub/chat/room/"+roomId, callback);
-        await client.publish({
-            destination: "/pub/chat/enterUser",
-            body: JSON.stringify({
-                'type': 'ENTER',
-                'roomId': roomId,
-                'sender': userId,
-                'time': "time"
-            })
-        })
-
-        await console.log(userId, "입장!");
-    }
+    // //enter chat room
+    // const sendName =  async () => {
+    //     await client.subscribe("/sub/chat/room/"+roomId, callback);
+    //     await client.publish({
+    //         destination: "/pub/chat/enterUser",
+    //         body: JSON.stringify({
+    //             'type': 'ENTER',
+    //             'roomId': roomId,
+    //             'sender': userId,
+    //             'time': "time"
+    //         })
+    //     })
+    //
+    //     await console.log(userId, "입장!");
+    // }
 
 
     useEffect(() => {
-        if(roomList.length===0) {
+        if(broadcastList.length===0) {
             return () => disConnect();
         }
         else{
@@ -88,7 +87,7 @@ const ChatFormContainer = ({chatList,roomList, callback, roomId}) => {
                 console.log(err);
             }
         }
-    }, [roomList]);
+    }, [broadcastList]);
 
     const onChangeChat = (e)     => {
         setChat(e.target.value);
@@ -99,7 +98,6 @@ const ChatFormContainer = ({chatList,roomList, callback, roomId}) => {
 
     return (
         <div className={styles.chat1Parent}>
-
             <form className={styles.chatInput} onSubmit={handleSubmit}>
                 <img className={styles.chatInputChild} alt="" src="/vector-1.svg" />
                 <img
@@ -108,11 +106,9 @@ const ChatFormContainer = ({chatList,roomList, callback, roomId}) => {
                     alt=""
                     src="/rectangle-11@2x.png"
                 />
-                <textarea
+                <input
                     className={styles.textarea}
                     placeholder="채팅을 입력하세요"
-                    rows={1}
-                    cols={30}
                     value={chat}
                     onChange={onChangeChat}
                     onKeyDown={(e)=>{
